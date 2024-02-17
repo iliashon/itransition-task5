@@ -31,7 +31,7 @@ export default function RangeInputErrors() {
     }, []);
 
     return (
-        <div className="w-52 flex items-center gap-5">
+        <div className="w-72 flex items-center gap-5">
             <Slider
                 aria-label="CountError"
                 valueLabelDisplay="auto"
@@ -40,9 +40,10 @@ export default function RangeInputErrors() {
                 min={0}
                 max={10}
                 step={0.25}
+                color="error"
             />
             <input
-                className="w-32 h-14 text-2xl border"
+                className="h-10 rounded-[5px] px-4 text-xl font-light border border-[#d32f2f]"
                 type="number"
                 value={countErrors}
                 max={1000}

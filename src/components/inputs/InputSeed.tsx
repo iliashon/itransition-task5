@@ -4,6 +4,8 @@ import { faker } from "@faker-js/faker";
 import { useSearchParams } from "next/navigation";
 import { useQueryState } from "nuqs";
 
+const MAX_NUMBER_SEED = 1000000;
+
 export default function InputSeed() {
     const params = useSearchParams();
     const [seed, setSeed] = useState(0);
@@ -21,12 +23,17 @@ export default function InputSeed() {
     };
 
     const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
-        setSeed(Number(event.target.value));
-        handleSetParamsSeed(event.target.value);
+        if (Number(event.target.value) > MAX_NUMBER_SEED) {
+            setSeed(MAX_NUMBER_SEED);
+            handleSetParamsSeed(MAX_NUMBER_SEED.toString());
+        } else {
+            setSeed(Number(event.target.value));
+            handleSetParamsSeed(event.target.value);
+        }
     };
 
     const handleGenerateRundomSeed = () => {
-        const randomSeed = faker.number.int({ max: 1000000 });
+        const randomSeed = faker.number.int({ max: MAX_NUMBER_SEED });
         setSeed(randomSeed);
         handleSetParamsSeed(randomSeed.toString());
     };
@@ -40,7 +47,7 @@ export default function InputSeed() {
     return (
         <div className="flex items-center gap-3">
             <input
-                className="w-32 h-14 text-2xl border"
+                className="h-10 w-36 rounded-[5px] px-4 text-xl font-light border border-[#008dff]"
                 type="number"
                 value={seed}
                 onChange={handleInputChange}
@@ -50,7 +57,7 @@ export default function InputSeed() {
                 className="cursor-pointer"
                 onClick={handleGenerateRundomSeed}
             >
-                <ArrowPathRoundedSquareIcon className="text-black h-8" />
+                <ArrowPathRoundedSquareIcon className="text-[#008dff] h-7" />
             </button>
         </div>
     );

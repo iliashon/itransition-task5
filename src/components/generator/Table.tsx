@@ -40,7 +40,7 @@ const CSV_CONFIG = {
 
 const csvExporter = new ExportToCsv(CSV_CONFIG);
 
-export default function TestTable() {
+export default function Table() {
     const tableContainerRef = useRef<HTMLDivElement>(null); //we can get access to the underlying TableContainer element and react to its scroll events
     const rowVirtualizerInstanceRef = useRef<MRT_RowVirtualizer>(null); //we can get access to the underlying Virtualizer instance and call its scrollToIndex method
     const params = useSearchParams();

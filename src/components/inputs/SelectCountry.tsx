@@ -67,6 +67,7 @@ export default function SelectCountry() {
                 <Select
                     labelId="select-country-label"
                     id="select-country"
+                    className="h-10"
                     label="Region"
                     value={`${country}`}
                     onChange={handleChange}
