@@ -1,11 +1,11 @@
 import { Slider } from "@mui/material";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { useQueryState } from "nuqs";
 
 export default function RangeInputErrors() {
     const params = useSearchParams();
-    const [countErrors, setCountErrors] = useState(5);
+    const [countErrors, setCountErrors] = useState(0);
     const [paramsErrorCount, setParamsErrorCount] = useQueryState("errors");
 
     const handleSliderChange = (event: Event, newValue: number | number[]) => {
@@ -24,8 +24,14 @@ export default function RangeInputErrors() {
         Number(event.target.value) === 0 ? setParamsErrorCount(null) : "";
     };
 
+    useEffect(() => {
+        if (params.has("errors")) {
+            setCountErrors(Number(params.get("errors")));
+        }
+    }, []);
+
     return (
-        <div className="w-52 flex gap-5">
+        <div className="w-52 flex items-center gap-5">
             <Slider
                 aria-label="CountError"
                 valueLabelDisplay="auto"
@@ -36,7 +42,7 @@ export default function RangeInputErrors() {
                 step={0.25}
             />
             <input
-                className="w-32 h-14 text-2xl"
+                className="w-32 h-14 text-2xl border"
                 type="number"
                 value={countErrors}
                 max={1000}
