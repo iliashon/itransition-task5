@@ -16,9 +16,11 @@ export default function Board() {
                 </Suspense>
             </div>
             <div className="mt-5">
-                <QueryClientProvider client={queryClient}>
-                    <TestTable />
-                </QueryClientProvider>
+                <Suspense>
+                    <QueryClientProvider client={queryClient}>
+                        <TestTable />
+                    </QueryClientProvider>
+                </Suspense>
             </div>
         </div>
     );
