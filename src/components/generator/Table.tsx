@@ -103,7 +103,13 @@ export default function Table() {
     }, [fetchMoreOnBottomReached]);
 
     const handleExportData = () => {
-        csvExporter.generateCsv(flatData);
+        const newIdData = flatData.map((user, index) => {
+            return {
+                ...user,
+                id: index + 1,
+            };
+        });
+        csvExporter.generateCsv(newIdData);
     };
 
     const table = useMaterialReactTable({
