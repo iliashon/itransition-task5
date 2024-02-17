@@ -6,7 +6,7 @@ import { ArrowDownTrayIcon } from "@heroicons/react/24/outline";
 
 export default function ToolBar({ handleSave }: { handleSave: () => void }) {
     return (
-        <div className="flex px-4 w-full items-center justify-between">
+        <div className="flex px-4 py-3 w-full items-center justify-between">
             <SelectCountry />
             <RangeInputErrors />
             <InputSeed />

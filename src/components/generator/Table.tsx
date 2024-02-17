@@ -117,9 +117,10 @@ export default function Table() {
         enableSorting: false,
         enableFullScreenToggle: false,
         enableDensityToggle: false,
+        enableStickyHeader: true,
         muiTableContainerProps: {
             ref: tableContainerRef,
-            sx: { maxHeight: "400px" },
+            sx: { maxHeight: "500px" },
             onScroll: (event: UIEvent<HTMLDivElement>) =>
                 fetchMoreOnBottomReached(event.target as HTMLDivElement),
         },

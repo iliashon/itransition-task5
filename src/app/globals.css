@@ -2,6 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.css-epvm6 {
-    display: none;
+.css-epvm6, .css-10gei56 {
+    display: none !important;
 }

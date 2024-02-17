@@ -11,7 +11,15 @@ const queryClient = new QueryClient();
 export default function Board() {
     return (
         <div className="mt-5">
-            <Suspense fallback={<Skeleton />}>
+            <Suspense
+                fallback={
+                    <Skeleton
+                        height={580}
+                        variant="rectangular"
+                        className="rounded-lg"
+                    />
+                }
+            >
                 <QueryClientProvider client={queryClient}>
                     <Table />
                 </QueryClientProvider>
