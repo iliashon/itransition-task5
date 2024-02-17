@@ -1,5 +1,6 @@
 export type TParamsGetFakeUsers = {
-    seed: number;
-    limit: number;
-    locale: string;
+    seed: number | undefined;
+    limit?: number | undefined;
+    locale: string | undefined;
+    errors: number | undefined;
 };

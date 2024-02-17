@@ -44,5 +44,5 @@ export async function GET(req: Request) {
 
     const fakeUsers = getEnFakeUsers(limit, newFaker);
 
-    return Response.json({ fakeData: fakeUsers });
+    return Response.json(fakeUsers);
 }

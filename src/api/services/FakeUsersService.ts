@@ -1,14 +1,19 @@
 import { TParamsGetFakeUsers } from "@/types/types";
 import { IFakeUser } from "@/types/IFakeUser";
 import { api } from "@/api/axios.config";
+import { AxiosResponse } from "axios";
 
 export default class FakeUsersService {
-    static async getFakeUsers({ seed, limit, locale }: TParamsGetFakeUsers) {
+    static async getFakeUsers({
+        seed,
+        limit,
+        locale,
+    }: TParamsGetFakeUsers): Promise<AxiosResponse<IFakeUser[]>> {
         return api.get<IFakeUser[]>("/api", {
             params: {
-                seed,
-                limit,
-                locale,
+                seed: seed || "",
+                limit: limit || "",
+                locale: locale || "",
             },
         });
     }

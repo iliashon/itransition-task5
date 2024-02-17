@@ -7,7 +7,10 @@ import { useQueryState } from "nuqs";
 export default function InputSeed() {
     const params = useSearchParams();
     const [seed, setSeed] = useState(0);
-    const [seedParams, setSeedParams] = useQueryState("seed");
+    const [seedParams, setSeedParams] = useQueryState("seed", {
+        history: "push",
+        shallow: false,
+    });
 
     const handleSetParamsSeed = (seed: string) => {
         if (Number(seed) === 0) {
