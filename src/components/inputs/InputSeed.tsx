@@ -32,7 +32,7 @@ export default function InputSeed() {
         if (params.has("seed")) {
             setSeed(Number(params.get("seed")));
         }
-    });
+    }, []);
 
     return (
         <div className="flex items-center gap-3">

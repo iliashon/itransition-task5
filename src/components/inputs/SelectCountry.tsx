@@ -45,6 +45,11 @@ export default function SelectCountry() {
 
     const [locale, setLocale] = useQueryState("locale");
 
+    const handleChange = (event: SelectChangeEvent) => {
+        setCountry(Number(event.target.value));
+        setLocale(COUNTRY_LIST[Number(event.target.value)].code);
+    };
+
     useEffect(() => {
         params.has("locale")
             ? COUNTRY_LIST.forEach((location, index) => {
@@ -53,12 +58,7 @@ export default function SelectCountry() {
                   }
               })
             : "";
-    });
-
-    const handleChange = (event: SelectChangeEvent) => {
-        setCountry(Number(event.target.value));
-        setLocale(COUNTRY_LIST[Number(event.target.value)].code);
-    };
+    }, []);
 
     return (
         <div className="w-36">
@@ -73,7 +73,9 @@ export default function SelectCountry() {
                 >
                     {COUNTRY_LIST.map((country, index) => {
                         return (
-                            <MenuItem value={index}>{country.name}</MenuItem>
+                            <MenuItem key={country.code} value={index}>
+                                {country.name}
+                            </MenuItem>
                         );
                     })}
                 </Select>
