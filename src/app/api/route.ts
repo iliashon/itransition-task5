@@ -34,7 +34,8 @@ function getEnFakeUsers(limit: number, faker: Faker): IFakeUser[] {
 export async function GET(req: Request) {
     const { searchParams } = new URL(req.url);
 
-    const seed: number = Number(searchParams.get("seed"));
+    const seed: number =
+        Number(searchParams.get("seed")) || faker.number.int({ max: 1000000 });
     const limit: number = Number(searchParams.get("limit")) || 20;
     const errors: number = Number(searchParams.get("errors")) || 0;
     const locale: string = searchParams.get("locale") || "en";

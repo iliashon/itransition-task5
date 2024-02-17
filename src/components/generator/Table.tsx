@@ -36,6 +36,7 @@ const CSV_CONFIG = {
     fieldSeparator: ",",
     decimalSeparator: ".",
     useKeysAsHeaders: true,
+    filename: "fakeUsers",
 };
 
 const csvExporter = new ExportToCsv(CSV_CONFIG);
@@ -79,7 +80,7 @@ export default function Table() {
                 const { scrollHeight, scrollTop, clientHeight } =
                     containerRefElement;
                 if (
-                    scrollHeight - scrollTop - clientHeight < 400 &&
+                    scrollHeight - scrollTop - clientHeight < 5 &&
                     !isFetching
                 ) {
                     fetchNextPage();
