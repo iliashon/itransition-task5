@@ -9,19 +9,12 @@ const queryClient = new QueryClient();
 
 export default function Board() {
     return (
-        <div>
-            <div>
-                <Suspense>
-                    <ToolBar />
-                </Suspense>
-            </div>
-            <div className="mt-5">
-                <Suspense>
-                    <QueryClientProvider client={queryClient}>
-                        <TestTable />
-                    </QueryClientProvider>
-                </Suspense>
-            </div>
+        <div className="mt-5">
+            <Suspense>
+                <QueryClientProvider client={queryClient}>
+                    <TestTable />
+                </QueryClientProvider>
+            </Suspense>
         </div>
     );
 }

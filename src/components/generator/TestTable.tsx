@@ -10,8 +10,11 @@ import { TParamsGetFakeUsers } from "@/types/types";
 import FakeUsersService from "@/api/services/FakeUsersService";
 import { IFakeUser } from "@/types/IFakeUser";
 import { useSearchParams } from "next/navigation";
+import ToolBar from "@/components/generator/ToolBar";
+import { download, generateCsv, mkConfig } from "export-to-csv";
+import { Button } from "@mui/material";
 
-const columns: MRT_ColumnDef<IFakeUser>[] = [
+const COLUMNS: MRT_ColumnDef<IFakeUser>[] = [
     {
         accessorKey: "uuid",
         header: "UUID",
@@ -30,7 +33,11 @@ const columns: MRT_ColumnDef<IFakeUser>[] = [
     },
 ];
 
-const fetchSize = 25;
+const CSV_CONFIG = mkConfig({
+    fieldSeparator: ",",
+    decimalSeparator: ".",
+    useKeysAsHeaders: true,
+});
 
 export default function TestTable() {
     const tableContainerRef = useRef<HTMLDivElement>(null); //we can get access to the underlying TableContainer element and react to its scroll events
@@ -93,8 +100,13 @@ export default function TestTable() {
         fetchMoreOnBottomReached(tableContainerRef.current);
     }, [fetchMoreOnBottomReached]);
 
+    const handleExportData = () => {
+        const csv = generateCsv(CSV_CONFIG)(flatData);
+        download(CSV_CONFIG)(csv);
+    };
+
     const table = useMaterialReactTable({
-        columns,
+        columns: COLUMNS,
         data: flatData,
         enableRowNumbers: true,
         enableGlobalFilter: false,
@@ -124,6 +136,9 @@ export default function TestTable() {
         },
         rowVirtualizerInstanceRef,
         rowVirtualizerOptions: { overscan: 4 },
+        renderTopToolbarCustomActions: ({ table }) => (
+            <ToolBar handleSave={handleExportData} />
+        ),
     });
 
     return <MaterialReactTable table={table} />;
