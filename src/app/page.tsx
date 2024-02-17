@@ -1,23 +1,9 @@
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
 
 export default function Home() {
     return (
         <div className="bg-white">
-            <header className="absolute inset-x-0 top-0 z-50">
-                <nav
-                    className="flex items-center justify-between p-6 lg:px-8"
-                    aria-label="Global"
-                >
-                    <div className="flex lg:flex-1">
-                        <a href="#" className="-m-1.5 p-1.5 text-2xl">
-                            itupalski
-                        </a>
-                    </div>
-                </nav>
-            </header>
-
             <div className="relative isolate px-6 pt-14 lg:px-8">
                 <div
                     className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
@@ -41,7 +27,7 @@ export default function Home() {
                         </p>
                         <div className="mt-10 flex items-center justify-center gap-x-6">
                             <Link
-                                href="#"
+                                href="board"
                                 className="rounded-md bg-indigo-600 flex gap-2 duration-300 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                             >
                                 Go Board <ArrowRightIcon className="h-5" />
