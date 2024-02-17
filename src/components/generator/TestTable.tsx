@@ -11,8 +11,7 @@ import FakeUsersService from "@/api/services/FakeUsersService";
 import { IFakeUser } from "@/types/IFakeUser";
 import { useSearchParams } from "next/navigation";
 import ToolBar from "@/components/generator/ToolBar";
-import { download, generateCsv, mkConfig } from "export-to-csv";
-import { Button } from "@mui/material";
+import { ExportToCsv } from "ts-export-to-csv";
 
 const COLUMNS: MRT_ColumnDef<IFakeUser>[] = [
     {
@@ -33,11 +32,13 @@ const COLUMNS: MRT_ColumnDef<IFakeUser>[] = [
     },
 ];
 
-const CSV_CONFIG = mkConfig({
+const CSV_CONFIG = {
     fieldSeparator: ",",
     decimalSeparator: ".",
     useKeysAsHeaders: true,
-});
+};
+
+const csvExporter = new ExportToCsv(CSV_CONFIG);
 
 export default function TestTable() {
     const tableContainerRef = useRef<HTMLDivElement>(null); //we can get access to the underlying TableContainer element and react to its scroll events
@@ -101,8 +102,7 @@ export default function TestTable() {
     }, [fetchMoreOnBottomReached]);
 
     const handleExportData = () => {
-        const csv = generateCsv(CSV_CONFIG)(flatData);
-        download(CSV_CONFIG)(csv);
+        csvExporter.generateCsv(flatData);
     };
 
     const table = useMaterialReactTable({
