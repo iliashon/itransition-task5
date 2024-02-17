@@ -46,11 +46,9 @@ export default function SelectCountry() {
     const [locale, setLocale] = useQueryState("locale");
 
     useEffect(() => {
-        console.log(params.has("locale"));
         params.has("locale")
             ? COUNTRY_LIST.forEach((location, index) => {
                   if (location.code === params.get("locale")) {
-                      console.log(index);
                       setCountry(index);
                   }
               })
@@ -60,7 +58,6 @@ export default function SelectCountry() {
     const handleChange = (event: SelectChangeEvent) => {
         setCountry(Number(event.target.value));
         setLocale(COUNTRY_LIST[Number(event.target.value)].code);
-        console.log(event.target.value);
     };
 
     return (
