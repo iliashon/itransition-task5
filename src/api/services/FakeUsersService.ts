@@ -8,12 +8,14 @@ export default class FakeUsersService {
         seed,
         limit,
         locale,
+        errors,
     }: TParamsGetFakeUsers): Promise<AxiosResponse<IFakeUser[]>> {
         return api.get<IFakeUser[]>("/api", {
             params: {
                 seed: seed || "",
                 limit: limit || "",
                 locale: locale || "",
+                errors: errors || "",
             },
         });
     }
