@@ -32,10 +32,6 @@ const COUNTRY_LIST = [
         name: "Poland",
         code: "pl",
     },
-    {
-        name: "China",
-        code: "zh_CN",
-    },
 ];
 
 export default function SelectCountry() {
